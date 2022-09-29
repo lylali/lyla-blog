@@ -31,7 +31,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL",  "sqlite:
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
-db.create_all()
+# db.create_all()
 
 @login_manager.user_loader
 def load_user(user_id):
