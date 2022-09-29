@@ -9,6 +9,7 @@ from flask_login import UserMixin, login_user, LoginManager, login_required, cur
 from forms import PostForm, RegisterForm, LoginForm, CommentForm
 from flask_gravatar import Gravatar
 from functools import wraps
+import os
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
@@ -26,7 +27,7 @@ gravatar = Gravatar(app,
                     use_ssl=False,
                     base_url=None)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://htritkkcmwvjbj:de80349580beda3b2c479ac3498d78c8b752939aab31a0df3085ab943a5fc00c@ec2-52-207-90-231.compute-1.amazonaws.com:5432/dai6jtmp66dd2c'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL",  "sqlite:///blog.db")
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
